@@ -163,7 +163,8 @@ func takeCredits(dir string) ([]*license, error) {
 		dir := filepath.Join(gopkgmod, encodedPath+"@"+stuff[1])
 		licenseFile, content, err := findLicense(dir)
 		if err != nil {
-			return nil, err
+			fmt.Fprintln(os.Stderr, err)
+			continue
 		}
 		ret = append(ret, &license{
 			Name:     stuff[0],
